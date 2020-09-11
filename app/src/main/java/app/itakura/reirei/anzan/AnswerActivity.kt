@@ -13,16 +13,30 @@ class AnswerActivity : AppCompatActivity() {
         val displayQuestion = intent.getStringExtra("question")
         val yourAnswer = intent.getStringExtra("yourAnswer")
         val correctAnswer = intent.getStringExtra("correct")
+        val hiku = intent.getStringExtra("hiku")
+        val operator = intent.getStringExtra("operator")
 
         textView.text = displayQuestion
         textView2.text = yourAnswer.toString()
 
-        if (yourAnswer == correctAnswer){
-            imageView.setImageResource(R.drawable.correct_image)
-            reactionImage.setImageResource(R.drawable.randy_happy_image)
-        }else{
-            imageView.setImageResource(R.drawable.miss_image)
-            reactionImage.setImageResource(R.drawable.randy_sad_image)
+        if (operator == "-"){
+            if (yourAnswer == hiku){
+                imageView.setImageResource(R.drawable.correct_image)
+                reactionImage.setImageResource(R.drawable.randy_happy_image)
+            }else{
+                imageView.setImageResource(R.drawable.miss_image)
+                reactionImage.setImageResource(R.drawable.randy_sad_image)
+            }
+
+        }else {
+
+            if (yourAnswer == correctAnswer) {
+                imageView.setImageResource(R.drawable.correct_image)
+                reactionImage.setImageResource(R.drawable.randy_happy_image)
+            } else {
+                imageView.setImageResource(R.drawable.miss_image)
+                reactionImage.setImageResource(R.drawable.randy_sad_image)
+            }
         }
 
         backButton.setOnClickListener {

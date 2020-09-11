@@ -19,20 +19,32 @@ class MainActivity : AppCompatActivity() {
         number1Text.text = randomNumber1.toString()
         number2Text.text = randomNumber2.toString()
 
-        val randomOperator = Random.nextInt(2)
+        val randomOperator = Random.nextInt(3)
         var operatorText = ""
         var correctAnswer = 0
+        var correct = 0
+        var hiku = "0"
 
         if(randomOperator == 0){
             operatorText = "+"
             signText.text = operatorText
             correctAnswer = randomNumber1 + randomNumber2
 
-        }else{
+        }else if(randomOperator == 1){
             operatorText = "-"
             signText.text = operatorText
-            correctAnswer = randomNumber1 - randomNumber2
+                 correct = randomNumber1 - randomNumber2
+            if (randomNumber1>randomNumber2){
+                 hiku = correct.toString()
+            }else if (randomNumber1<randomNumber2){
+                 hiku = "ー$correct"
+            }
 
+
+        }else{
+            operatorText = "×"
+            signText.text = operatorText
+            correctAnswer = randomNumber1 * randomNumber2
         }
 
         checkButton.setOnClickListener {
@@ -48,6 +60,9 @@ class MainActivity : AppCompatActivity() {
                 answerPage.putExtra("question", questionText)
                 answerPage.putExtra("yourAnswer", yourAnswer)
                 answerPage.putExtra("correct", correctAnswer.toString())
+                answerPage.putExtra("hiku",hiku)
+                answerPage.putExtra("operator",operatorText)
+
 
                 startActivity(answerPage)
                 finish()
